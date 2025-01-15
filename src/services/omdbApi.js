@@ -7,7 +7,7 @@ const BASE_URL = `http://www.omdbapi.com/`;
 // Access using Vite's import.meta.env
 const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
-export const fetchALLMovies = async (page = 1) => {
+export const fetchAllMovies = async (page = 1) => {
   const response = await axios.get(
     `${BASE_URL}?apikey=${API_KEY}&s=man&page=${page}`
   );

@@ -1,13 +1,27 @@
-import { fetchALLMovies } from "./services/omdbApi"
-
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import MovieDetails from "./pages/MovieDetails";
+import NotFound from "./pages/NotFound";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import SideBar from "./components/SideBar";
 
 const App = () => {
- 
-   fetchALLMovies("the")
-
   return (
-    <div>App</div>
-  )
-}
+    <div className="bg-[#212121] text-[#e2e2e2] h-full flex flex-col ">
+      <Header />
+      <div className="flex">
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
 
-export default App
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
