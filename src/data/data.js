@@ -1,4 +1,4 @@
-export const trendingMovies = [
+export const trendingMoviesData = [
   {
     title: "Mufasa: The Lion King",
     poster:
