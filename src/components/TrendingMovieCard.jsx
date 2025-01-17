@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa6";
 
 const TrendingMovieCard = ({ movie, handleScroll }) => {
-  console.log(movie);
+
   return (
     <div className=" relative w-[70rem]  text-[#e2e2e2] ">
       <button className=" absolute top-4 left-5 px-4 py-1 rounded-2xl bg-slate-200/20">
