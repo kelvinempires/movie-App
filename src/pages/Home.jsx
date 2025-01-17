@@ -59,7 +59,6 @@ const Home = () => {
         </div>
       </div>
       
-
       <div className="px-8 mt-8">
         <h2>Trending</h2>
         <div className="grid grid-cols-4 mt-8 gap-4">
