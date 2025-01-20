@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TrendingMovieCard from "../components/TrendingMovieCard";
 import { trendingMoviesData } from "../data/data";
 import { fetchAllMovies } from "../services/omdbApi";
+import MovieCard from "../components/MovieCard";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -38,9 +39,9 @@ const Home = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden  ml-56 mt-20">
       <div
-        className="w-full overflow-x-hidden scroll-smooth"
+        className="w-full overflow-x-hidden scroll-smooth mt-5 "
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <div
@@ -61,11 +62,9 @@ const Home = () => {
       
       <div className="px-8 mt-8">
         <h2>Trending</h2>
-        <div className="grid grid-cols-4 mt-8 gap-4">
+        <div className="grid grid-cols-5 place-items-center my-8 gap-4">
           {movies.map((movie) => (
-            <div key={movie.imdbID} className="flex gap-4">
-              <img src={movie.Poster} className="h-80" alt="" />
-            </div>
+          <MovieCard key={movie.imdbID} movie={movie} />  
           ))}
         </div>
       </div>
