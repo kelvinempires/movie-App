@@ -4,6 +4,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa6";
+import PropTypes from 'prop-types';
 
 const TrendingMovieCard = ({ movie, handleScroll }) => {
   const genres = movie.genres || []; // Add a fallback for genres
@@ -59,6 +60,19 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
       </div>
     </div>
   );
+};
+TrendingMovieCard.propTypes = {
+  movie: PropTypes.shape({
+    backdrop_path: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })
+    ),
+    title: PropTypes.string,
+    overview: PropTypes.string,
+  }).isRequired,
+  handleScroll: PropTypes.func.isRequired,
 };
 
 export default TrendingMovieCard;
