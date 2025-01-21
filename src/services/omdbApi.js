@@ -36,6 +36,7 @@ export const fetchMovieByTitle = async (title) => {
   }
 };
 
+<<<<<<< HEAD
  export const options = {
    method: "GET",
    headers: {
@@ -43,3 +44,12 @@ export const fetchMovieByTitle = async (title) => {
      Authorization: import.meta.env.VITE_TMDB_API_KEY,
    },
  };
+=======
+export const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: import.meta.env.VITE_TMDB_API_KEY,
+  },
+};
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b

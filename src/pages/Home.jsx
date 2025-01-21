@@ -2,21 +2,34 @@
 
 import { useEffect, useState } from "react";
 import TrendingMovieCard from "../components/TrendingMovieCard";
+<<<<<<< HEAD
 // import { trendingMoviesData } from "../data/data";
 // import { fetchAllMovies, options } from "../services/omdbApi";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
 import { options } from "../services/omdbApi";
+=======
+import { trendingMoviesData } from "../data/data";
+import { fetchAllMovies, options } from "../services/omdbApi";
+import MovieCard from "../components/MovieCard";
+import axios from "axios";
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     const trendingMoviesUrl =
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
       const moviesUrl = `https://api.themoviedb.org/3/trending/all/week?language=en-US`;
    
+=======
+    const trendingMoviesUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`;
+    const moviesUrl = `https://api.themoviedb.org/3/trending/all/week?language=en-US`;
+
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
     const fetchTrendingMovies = async () => {
       try {
         const response = await axios.get(trendingMoviesUrl, options);
@@ -36,7 +49,11 @@ const Home = () => {
       }
     };
     fetchAllMovies();
+<<<<<<< HEAD
     fetchTrendingMovies();
+=======
+    fetchTrendingMovies(); // Call the fetch function to get the data
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
   }, []);
 
   const handleScroll = (direction) => {

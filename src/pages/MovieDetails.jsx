@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+=======
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
 import { options } from "../services/omdbApi";
 
 const MovieDetails = () => {
@@ -13,8 +19,13 @@ const MovieDetails = () => {
       const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
       try {
         const response = await axios.get(url, options);
+<<<<<<< HEAD
         console.log(response.data);
         setMovie(response.data);
+=======
+        setMovie(response.data);
+        console.log(response.data);
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
       } catch (error) {
         console.error(error);
       }
@@ -22,6 +33,7 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [id]);
 
+<<<<<<< HEAD
   if (!movie) {
     return <p>Loading...</p>;
   }
@@ -63,6 +75,15 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
+=======
+  return (
+    <div className="flex flex-col h-full items-center mt-10">
+      <img
+        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+        alt=""
+      />
+      <h1 className="text-2xl font-semibold" >{movie?.title}</h1>
+>>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
     </div>
   );
 };
