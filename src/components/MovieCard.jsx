@@ -10,11 +10,7 @@ const MovieCard = ({ movie }) => {
       className="flex flex-col gap-4 hover:cursor-pointer bg-slate-100/10 p-5 rounded-lg"
     >
       <img
-<<<<<<< HEAD
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-=======
-        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
->>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
         className="h-64 rounded-xl"
         alt=""
       />

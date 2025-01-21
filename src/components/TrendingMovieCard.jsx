@@ -6,12 +6,8 @@ import {
 } from "react-icons/fa6";
 
 const TrendingMovieCard = ({ movie, handleScroll }) => {
-<<<<<<< HEAD
   const genres = movie.genres || []; // Add a fallback for genres
 
-=======
-  console.log(movie)
->>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
   return (
     <div className=" relative w-[70rem]  text-[#e2e2e2]  ">
       <button className=" absolute top-4 left-5 px-4 py-1 rounded-2xl bg-slate-200/20">
@@ -26,18 +22,14 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
       <div className="absolute bottom-0 w-full p-4 flex items-end justify-between">
         <div>
           <div className="flex gap-2 items-center">
-<<<<<<< HEAD
             {genres.map((genre, index) => (
-=======
-            {/* {movie.genres.map((genre, index) => (
->>>>>>> 6a40dfc0789daf71ed49b8faf1ede875d61a091b
               <span
                 key={index}
                 className="text-xs bg-slate-200/20 px-2 py-1 rounded-2xl"
               >
                 {genre.name}
               </span>
-            ))} */}
+            ))} 
           </div>
           <div className="mt-2 flex flex-col items-start gap-3">
             <h2 className="text-3xl font-bold mt-2">{movie.title}</h2>
