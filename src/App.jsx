@@ -4,7 +4,7 @@ import MovieDetails from "./pages/MovieDetails";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SideBar from "./components/SideBar";
+// import SideBar from "./components/SideBar";
 
 const App = () => {
   return (

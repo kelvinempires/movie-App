@@ -5,7 +5,7 @@ const BASE_URL = `http://www.omdbapi.com/`;
 
 // API key stored in environment variables for security
 // Access using Vite's import.meta.env
-const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export const fetchAllMovies = async (page = 1) => {
   const response = await axios.get(
@@ -35,3 +35,11 @@ export const fetchMovieByTitle = async (title) => {
     return null;
   }
 };
+
+ export const options = {
+   method: "GET",
+   headers: {
+     accept: "application/json",
+     Authorization: import.meta.env.VITE_TMDB_API_KEY,
+   },
+ };

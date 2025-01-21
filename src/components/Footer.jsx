@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="relative z-40 top-0 bg-[#0f172a] flex items-center justify-around h-20 w-full px-24 ">
+    <div className="  relative z-40 top-0 bg-[#0f172a] flex items-center justify-around h-20 w-full px-24 ">
       <div>
         <p className="text-white text-center py-4">
           &copy; 2021 MovieApp. All rights reserved.
@@ -11,10 +11,10 @@ const Footer = () => {
           Made with ❤️ by{" "}
           <a
             href="
-          https://www.twitter.com/dejixice"
+          https://www.twitter.com/kelvinEwurum"
             className="text-blue-500"
           >
-            Ayodeji
+            kelvinEwurum
           </a>
         </p>
       </div>

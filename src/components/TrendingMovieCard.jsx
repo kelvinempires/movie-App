@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   FaPlay,
   FaYoutube,
@@ -7,6 +6,7 @@ import {
 } from "react-icons/fa6";
 
 const TrendingMovieCard = ({ movie, handleScroll }) => {
+  const genres = movie.genres || []; // Add a fallback for genres
 
   return (
     <div className=" relative w-[70rem]  text-[#e2e2e2]  ">
@@ -14,7 +14,7 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
         Now Trending 🔥
       </button>
       <img
-        src={movie.poster}
+        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         className="w-full object-cover rounded-3xl h-[30rem]"
         alt=""
       />
@@ -22,12 +22,12 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
       <div className="absolute bottom-0 w-full p-4 flex items-end justify-between">
         <div>
           <div className="flex gap-2 items-center">
-            {movie.genres.map((genre, index) => (
+            {genres.map((genre, index) => (
               <span
                 key={index}
                 className="text-xs bg-slate-200/20 px-2 py-1 rounded-2xl"
               >
-                {genre}
+                {genre.name}
               </span>
             ))}
           </div>
