@@ -8,10 +8,9 @@ import SideBar from "./components/SideBar";
 
 const App = () => {
   return (
-    <div className="bg-[#212121] text-[#e2e2e2] h-full flex flex-col ">
+    <div className="text-[#e2e2e2] bg h-full flex flex-col ">
       <Header />
       <div className="flex">
-        <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />

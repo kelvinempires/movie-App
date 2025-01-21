@@ -11,10 +11,10 @@ const Footer = () => {
           Made with ❤️ by{" "}
           <a
             href="
-          https://www.twitter.com/iammurtaza1"
+          https://www.twitter.com/dejixice"
             className="text-blue-500"
           >
-          Ayodeji
+            Ayodeji
           </a>
         </p>
       </div>
@@ -22,6 +22,8 @@ const Footer = () => {
         <p className="text-white text-center py-4">
           Images from{" "}
           <a
+            target="_blank"
+            rel="noreferrer"
             href="https://www.themoviedb.org/"
             className="text-blue-500"
           >

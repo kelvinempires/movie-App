@@ -45,7 +45,7 @@ const Home = () => {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <div
-          className="flex justify-around w-fit gap-20 px-10"
+          className="flex justify-around w-fit gap-20 drop-shadow-xl px-10"
           onWheel={(e) => e.preventDefault()}
           onScroll={(e) => e.preventDefault()}
           onTouchMove={(e) => e.preventDefault()}
