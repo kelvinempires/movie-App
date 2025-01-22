@@ -1,12 +1,11 @@
 import SearchBar from "./SearchBar";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   return (
-    <header className="py-6 px-4 shadow-md fixed z-30 w-full">
+    <header className="pl-12 pt-6 pr-4 pb-2 shadow-md fixed z-30 w-full">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4 md:mb-0">
-          MovieApp
-        </h1>
+        <img src={logo} alt="logo" className="w-12" />
         <div className="w-full md:w-1/2">
           <SearchBar />
         </div>

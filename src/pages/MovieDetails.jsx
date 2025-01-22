@@ -40,6 +40,17 @@ const MovieDetails = () => {
     release_date,
   } = movie;
 
+  const getStars = (vote) => {
+    const stars = [];
+    const full = Math.floor(vote / 2);
+    const half = vote % 2 >= 1 ? 1 : 0;
+    const empty = 5 - full - half;
+    for (let i = 0; i < full; i++) stars.push("★");
+    if (half) stars.push("☆");
+    for (let j = 0; j < empty; j++) stars.push("✩");
+    return stars.join("");
+  };
+
   return (
     <div className="relative flex flex-col items-center w-full h-full">
       <div
@@ -50,28 +61,31 @@ const MovieDetails = () => {
       >
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
       </div>
-      <div className="relative w-full lg:w-11/12 p-12 z-10">
+      <div className="relative top-10 w-full lg:w-11/12 p-12 z-10">
         <div className="md:flex md:space-x-6">
           <img
             className="rounded-lg shadow-lg w-auto md:w-48"
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title || name}
           />
-          <div className="mt-4 md:mt-0 text-white flex flex-col justify-center">
+          <div className="mt-4 md:mt-0 text-zinc-400 flex flex-col justify-center">
             <h1 className="text-3xl lg:text-4xl font-bold">{title || name}</h1>
             <p className="text-gray-300 mt-2">Release Date: {release_date}</p>
             <p className="mt-4 text-lg leading-relaxed flex-wrap">{overview}</p>
             <div className="mt-4 flex items-center">
-              <span className="text-yellow-500 mr-2">★★★★</span>
-              <span className="text-gray-300">{vote_average}</span><br/>
-              <div className="flex gap-4 items-center ml-4">
-                <button className="bg-white text-black flex items-center gap-2 px-2 py-2 rounded-lg mt-4">
-                  Watch now
-                </button>
-                <button className="border text-zinc-400 flex items-center gap-2 px-2 py-2 rounded-lg mt-4">
-                  Trailer
-                </button>
-              </div>
+              {" "}
+              <span className="text-yellow-500 mr-2">
+                {getStars(vote_average)}
+              </span>{" "}
+              <span className="text-gray-300 ml-1">{vote_average}</span>{" "}
+            </div>
+            <div className="flex gap-4 items-center">
+              <button className="bg-zinc-300 border text-black text-sm flex items-center gap-2 px-10 py-2 rounded-lg mt-4">
+                Watch Now
+              </button>
+              <button className="border text-zinc-400 flex items-center gap-2 px-14 py-2 rounded-lg mt-4">
+                Trailer
+              </button>
             </div>
           </div>
         </div>
@@ -81,11 +95,12 @@ const MovieDetails = () => {
           Recommended for You
         </h2>
         <div className="flex overflow-x-scroll hide-scroll-bar pb-6 min-h-0">
-          <div className="flex flex-nowrap space-x-2">
+          <button className="previous-button absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full"></button>
+          <div className="flex flex-nowrap space-x-0">
             {recommendations.map((rec) => (
               <div
                 key={rec.id}
-                className="flex flex-col items-center space-y-2 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 p-1 rounded-lg w-36 "
+                className="flex flex-col items-center  w-36 "
               >
                 <img
                   className="w-32 h-48 object-cover rounded-lg"
@@ -97,6 +112,7 @@ const MovieDetails = () => {
                 </h3> */}
               </div>
             ))}
+          
           </div>
         </div>
       </div>

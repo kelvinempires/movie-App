@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import NotFound from "./pages/NotFound";
-import Header from "./components/Header";
+import Header from "./components/NavBar";
 import Footer from "./components/Footer";
 // import SideBar from "./components/SideBar";
 
