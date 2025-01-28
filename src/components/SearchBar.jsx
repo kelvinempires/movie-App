@@ -1,79 +1,120 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { options } from "../services/omdbApi";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleSearch = async () => {
-    setLoading(true);
-    if (searchTerm === "") {
-      setSearchResults([]);
-      setLoading(false);
+  const navigate = useNavigate();
+
+  // Debounced function for real-time search
+  useEffect(() => {
+    if (query.trim() === "") {
+      setResults([]);
       return;
     }
-    try {
-      const response = await axios.get(
-        `http://www.omdbapi.com/?apiKey=${
-          import.meta.env.VITE_TMDB_API_KEY
-        }&s=${searchTerm}`
-      );
-      setSearchResults(response.data.Search);
-    } catch {
-      setLoading(false);
-    }
+
+    const delayDebounce = setTimeout(async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US`,
+          options
+        );
+        setResults(response.data.results);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      } finally {
+        setLoading(false);
+      }
+    }, 500); // 500ms debounce delay
+
+    return () => clearTimeout(delayDebounce);
+  }, [query]);
+
+  const handleResultClick = (item) => {
+    const path =
+      item.media_type === "tv"
+        ? `/watch-tv/${item.id}`
+        : `/watch-movie/${item.id}`;
+    navigate(path);
+    setQuery(""); // Clear search bar
+    setResults([]); // Clear results
   };
 
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
+  const toggleSearchBar = () => {
+    setExpanded((prev) => !prev);
+    if (!expanded) setQuery(""); // Reset query when closing the search bar
   };
-
-  useEffect(() => {
-    handleSearch();
-  }, [searchTerm]);
 
   return (
-    <div className="relative">
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="Search for movies..."
-        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <button className="absolute right-3 top-2">
-        <svg
-          className="w-6 h-6 text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
+    <div className="relative flex flex-col items-center">
+      {/* Search Button */}
+      <button
+        onClick={toggleSearchBar}
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+      >
+        {expanded ? "Close Search" : "Search"}
       </button>
 
-      {loading && (
-        <div className="bg-slate-300 absolute w-full text-black flex flex-col gap-2 p-3 ">
-          {searchResults?.map((movie) => (
-            <Link
-              onClick={() => setSearchResults([])}
-              to={`/movie/${movie.imdbID}`}
-              key={movie.imdbID}
-              className="flex gap-4 items-center"
-            >
-              <img src={movie.Poster} alt="" className="h-14 object-cover" />
-              <div className=" flex items-center gap-4">
-                <h2>{movie.Title}</h2>
-                <p>{movie.Year}</p>
-              </div>
-            </Link>
-          ))}
+      {/* Retractable Search Bar */}
+      {expanded && (
+        <div className="absolute top-12 w-full max-w-3xl bg-gray-900 text-white p-4 rounded-lg shadow-lg">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for movies, TV shows, or actors..."
+            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          {/* Search Results */}
+          {loading ? (
+            <p className="text-gray-400 mt-4">Searching...</p>
+          ) : (
+            <ul className="mt-4">
+              {results.map((item) => (
+                <li
+                  key={item.id}
+                  onClick={() => handleResultClick(item)}
+                  className="p-2 border-b border-gray-700 cursor-pointer hover:bg-gray-700 transition flex items-center gap-4"
+                >
+                  <img
+                    src={
+                      item.poster_path
+                        ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                        : "https://via.placeholder.com/200x300?text=No+Image"
+                    }
+                    alt={item.title || item.name}
+                    className="w-12 h-18 rounded-lg object-cover"
+                  />
+                  <div>
+                    <h3 className="text-lg font-bold">
+                      {item.title || item.name}
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      {item.media_type === "movie"
+                        ? "Movie"
+                        : item.media_type === "tv"
+                        ? "TV Show"
+                        : "Unknown"}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* No Results */}
+          {!loading && results.length === 0 && query.trim() && (
+            <p className="text-gray-400 mt-4">
+              No results found for {query}.
+            </p>
+          )}
         </div>
       )}
     </div>

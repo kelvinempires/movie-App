@@ -94,7 +94,7 @@ const WatchNow = () => {
           <iframe
             src={`https://vidsrc.to/embed/${tvPath ? 'tv' : 'movie'}/${id}`}
             className="absolute inset-0 w-full h-full rounded-xl shadow-2xl"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-popups allow-popups-to-escape-sandbox allow-modals"
+            // sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-popups allow-popups-to-escape-sandbox allow-modals"
             allowFullScreen
             referrerPolicy="no-referrer"
             onError={handleIframeError}

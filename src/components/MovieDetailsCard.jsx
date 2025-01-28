@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const MovieDetailsCard = ({
   title,
   name,
-  poster_path,
-  overview,
+  // poster_path,
+  // overview,
   movie,
-  release_date,
+  // release_date,
   vote_average,
 }) => {
   const getStars = (vote) => {

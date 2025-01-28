@@ -5,6 +5,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa6";
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 const TrendingMovieCard = ({ movie, handleScroll }) => {
   const genres = movie.genres || []; // Add a fallback for genres
@@ -30,7 +31,7 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
               >
                 {genre.name}
               </span>
-            ))} 
+            ))}
           </div>
           <div className="mt-2 flex flex-col items-start gap-3">
             <h2 className="text-3xl font-bold mt-2">{movie.title}</h2>
@@ -38,10 +39,17 @@ const TrendingMovieCard = ({ movie, handleScroll }) => {
           </div>
 
           <div className="mt-4 flex gap-4 items-center *:rounded-2xl *:py-1 *:px-3 ">
-            <button className="bg-white  text-black flex items-center gap-2 ">
+            <Link
+              to={
+                movie?.seasons
+                  ? `/watch-tv/${movie?.id}`
+                  : `/watch-movie/${movie?.id}`
+              }
+              className="bg-white  text-black flex items-center gap-2 "
+            >
               <FaPlay />
               Watch
-            </button>
+            </Link>
             <button className="bg-gray-500/20 flex items-center gap-2 border border-white ">
               <FaYoutube />
               Trailer
@@ -71,6 +79,8 @@ TrendingMovieCard.propTypes = {
     ),
     title: PropTypes.string,
     overview: PropTypes.string,
+    seasons: PropTypes.array,
+    id: PropTypes.number,
   }).isRequired,
   handleScroll: PropTypes.func.isRequired,
 };
