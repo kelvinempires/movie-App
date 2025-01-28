@@ -17,7 +17,7 @@ const SearchBar = () => {
     try {
       const response = await axios.get(
         `http://www.omdbapi.com/?apiKey=${
-          import.meta.env.VITE_OMDB_API_KEY
+          import.meta.env.VITE_TMDB_API_KEY
         }&s=${searchTerm}`
       );
       setSearchResults(response.data.Search);

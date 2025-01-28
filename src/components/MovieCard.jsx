@@ -1,12 +1,18 @@
 /* eslint-disable react/prop-types */
 
+import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie ,loading}) => {
   console.log(movie);
   return (
-    <Link
-      to={`/movie/${movie.id}`}
+ <>
+ {loading ? (<Skeleton containerClassName="animate-pulse h-64 bg-slate-800 rounded-lg"/>) : (
+     <Link
+      // to={`/movie/${movie.id}`}
+      to={
+        movie?.media_type === "movie" ? `/movie/${movie.id}` : `/tv/${movie.id}`
+      }
       className="flex flex-col gap-4 hover:cursor-pointer bg-slate-100/10 p-5 rounded-lg"
     >
       <img
@@ -21,6 +27,8 @@ const MovieCard = ({ movie }) => {
         </span>
       </div>
     </Link>
+  )}
+ </>
   );
 };
 

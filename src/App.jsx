@@ -4,6 +4,7 @@ import MovieDetails from "./pages/MovieDetails";
 import NotFound from "./pages/NotFound";
 import Header from "./components/NavBar";
 import Footer from "./components/Footer";
+import WatchNow from "./pages/watchNow";
 // import SideBar from "./components/SideBar";
 
 const App = () => {
@@ -14,10 +15,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/tv/:id" element={<MovieDetails />} />
+          <Route path="/watch-movie/:id" element={<WatchNow />} />
+          <Route path="/watch-tv/:id" element={<WatchNow />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-
       <Footer />
     </div>
   );
