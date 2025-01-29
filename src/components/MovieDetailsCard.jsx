@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { options } from "../services/omdbApi";
 
 const MovieDetailsCard = ({
   title,
@@ -21,7 +24,24 @@ const MovieDetailsCard = ({
     return stars.join("");
   };
 
+  const [cast, setCast] = useState([]);
+  const [hover, setHover] = useState({ index: null, show: false });
+
+  useEffect(() => {
+    const fetchCast = async () => {
+      const url = `https://api.themoviedb.org/3/movie/${movie?.id}/credits`;
+      try {
+        const response = await axios.get(url, options);
+        setCast(response.data.cast.slice(0, 5));
+        console.log(response.data.cast.slice(0, 5));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCast();
+  }, [movie?.id, setCast]);
   console.log(movie);
+
   return (
     <div className="relative top-10 w-full lg:w-11/12 p-12 z-10">
       <div className="md:flex md:space-x-6">
@@ -67,6 +87,55 @@ const MovieDetailsCard = ({
                 </div>
               </div>
             </div>
+            {/* Cast members */}
+            <div className="flex gap-1 relative">
+              <span className="font-semibold font-oswald flex flex-wrap ">
+                Casts:
+              </span>{" "}
+              <span>
+                {cast?.map((actor, index) => (
+                  <div key={actor.id} className="inline space-x-6 ">
+                    <span
+                      className="cursor-pointer hover:underline inline-flex mr-1 flex-nowrap"
+                      onMouseEnter={() => setHover({ index, show: true })}
+                      onMouseLeave={() =>
+                        setHover({ index: null, show: false })
+                      }
+                    >
+                      {actor.name}
+                      {index !== cast.length - 1 ? ", " : ""}
+                      {hover.index === index && hover.show && (
+                        <span className="backdrop-blur-sm bg-white/30 text-white flex flex-col items-center justify-center rounded-2xl min-w-24 min-h-24 w-fit font-semibold absolute top-[-6.5rem]">
+                          <img
+                            className="h-16 w-16 object-cover rounded-full animate-bounce"
+                            src={`https://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
+                          />
+                          <p className=""> {actor.character}</p>
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </span>
+            </div>
+            {/* <div>
+              <h2 className="text-white">Cast:</h2>
+              <div className="flex flex-col">
+                {cast?.map((actor, index) => (
+                  <>
+                    <span
+                      onMouseEnter={() => setHover({ index, show: true })}
+                      onMouseLeave={() => setHover({ index, show: false })}
+                      key={actor.id}
+                      className="text-zinc-400 text-sm mr-2 relative after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-gradient-to-r from-[#0092dd] via-[rgb(132,193,37)] to-[#d9241b] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full hover:after:left-0 cursor-pointer"
+                    >
+                      {actor.name}
+                      {index !== cast.length - 1 && ","}
+                    </span>
+                  </>
+                ))}
+              </div>
+            </div> */}
           </div>
 
           <div className="mt-4">
