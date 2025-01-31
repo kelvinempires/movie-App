@@ -3,6 +3,7 @@ import TrendingMovieCard from "../components/TrendingMovieCard";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
 import { options } from "../services/omdbApi";
+import Header from "../components/NavBar";
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -67,6 +68,7 @@ const Home = () => {
 
   return (
     <div className="text relative overflow-hidden">
+      <Header />
       <div
         className="overflow-x-scroll scroll-smooth mt-8 md:mt-24 px-4 md:px-14"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}

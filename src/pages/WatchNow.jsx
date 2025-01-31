@@ -55,13 +55,14 @@ const WatchNow = () => {
   };
 
   return (
-    <div className="h-full mt-24 w-screen flex flex-col items-center justify-center">
+    <div className="h-fit w-screen flex flex-col items-center justify-center">
       {loading ? (
         <div className="w-full h-[80vh] md:h-[90vh] px-20 py-8 rounded-lg bg-gray-900 animate-pulse" />
       ) : manifestError ? (
         <div className="w-full h-[80vh] md:h-[90vh] px-20 py-8 flex flex-col items-center justify-center gap-4">
           <p className="text-white text-xl font-source text-center">
-            This content cannot be embedded in Chrome/Edge.<br/>
+            This content cannot be embedded in Chrome/Edge.
+            <br />
             Please use the button below to watch in a new window.
           </p>
           <button
@@ -92,8 +93,8 @@ const WatchNow = () => {
             />
           )}
           <iframe
-            src={`https://vidsrc.to/embed/${tvPath ? 'tv' : 'movie'}/${id}`}
-            className="absolute inset-0 w-full h-full rounded-xl shadow-2xl"
+            src={`https://vidsrc.to/embed/${tvPath ? "tv" : "movie"}/${id}`}
+            className="absolute inset-0 w-full h-full shadow-2xl"
             // sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-popups allow-popups-to-escape-sandbox allow-modals"
             allowFullScreen
             referrerPolicy="no-referrer"

@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className=" bottom-0 shadow-md fixed z-30 w-full">
+    <div className="sm:mt-10 bottom-0 shadow-md fixed z-30 w-full ">
       <div>
         <p className="text-xs text-zinc-500 text-center">
           &copy; 2025 MovieApp. All rights reserved. crafted with ❤️ by

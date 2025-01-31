@@ -5,6 +5,7 @@ import { options } from "../services/omdbApi";
 import Skeleton from "react-loading-skeleton";
 import Movie2Card from "../components/Movie2card";
 import MovieDetailsCard from "../components/MovieDetailsCard";
+import Header from "../components/NavBar";
 
 const MovieDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
@@ -63,6 +64,8 @@ const MovieDetails = () => {
 
   return (
     <div className="relative flex flex-col items-center w-full h-full">
+      <Header />
+
       {/* Background Image */}
       <div
         className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-fixed bg-opacity-50"

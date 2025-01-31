@@ -60,8 +60,8 @@ const MovieDetailsCard = ({
             Overview
           </h2>
           <p className="text-lg leading-relaxed flex-wrap">{movie?.overview}</p>
-          <div className="flex flex-row">
-            <div className="mr-10">
+          <div className="flex flex-row gap-10">
+            <div >
               <h1 className="text-white">Genres:</h1>
               <div className="flex flex-wrap">
                 {movie?.genres.map((genre) => (
@@ -72,7 +72,6 @@ const MovieDetailsCard = ({
               </div>
             </div>
 
-            <div>
               <div>
                 <h2 className="text-white">Country:</h2>
                 <div className="flex flex-wrap">
@@ -85,13 +84,12 @@ const MovieDetailsCard = ({
                     </span>
                   ))}
                 </div>
-              </div>
             </div>
             {/* Cast members */}
-            <div className="flex gap-1 relative">
-              <span className="font-semibold font-oswald flex flex-wrap ">
+            <div className="flex flex-wrap gap-1 relative">
+              <span className="text-white font-semibold font-oswald flex flex-wrap ">
                 Casts:
-              </span>{" "}
+              </span>
               <span>
                 {cast?.map((actor, index) => (
                   <div key={actor.id} className="inline space-x-6 ">
@@ -151,13 +149,13 @@ const MovieDetailsCard = ({
                   ? `/watch-tv/${movie?.id}`
                   : `/watch-movie/${movie?.id}`
               }
-              className="bg-zinc-300 border text-black text-sm flex items-center gap-2 px-10 py-2 rounded-lg mt-4 hover:bg-zinc-400 hover:text-white hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out hover:transform hover:scale-105"
+              className="mb-10 bg-zinc-300 border text-black text-sm flex items-center gap-2 px-10 py-2 rounded-lg mt-4 hover:bg-zinc-400 hover:text-white hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out hover:transform hover:scale-105"
             >
               Watch Now
             </Link>
-            <button className="border text-zinc-400 flex items-center gap-2 px-14 py-2 rounded-lg mt-4 hover:bg-zinc-400 hover:text-black hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out hover:transform hover:scale-105">
+            {/* <button className="border text-zinc-400 flex items-center gap-2 px-14 py-2 rounded-lg mt-4 hover:bg-zinc-400 hover:text-black hover:shadow-lg hover:transition-all hover:duration-300 hover:ease-in-out hover:transform hover:scale-105">
               Trailer
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
