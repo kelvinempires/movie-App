@@ -36,6 +36,16 @@ const Home = () => {
     fetchMovies();
   }, []);
 
+  const handleScroll = (direction) => {
+    const element = document.getElementById("scrollable-element");
+    const scrollAmount = direction === "left" ? -200 : 200;
+
+    element.scrollBy({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="loading-placeholder">
@@ -58,24 +68,29 @@ const Home = () => {
   return (
     <div className="text relative overflow-hidden">
       <div
-        className="overflow-x-scroll scroll-smooth mt-24 px-14"
+        className="overflow-x-scroll scroll-smooth mt-8 md:mt-24 px-4 md:px-14"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         aria-label="Trending Movies"
         role="region"
       >
         <div
-          className="flex justify-around w-fit gap-20 drop-shadow-xl"
+          id="scrollable-element"
+          className="flex justify-around gap-4 md:gap-20 drop-shadow-xl w-max"
         >
           {trendingMovies.map((movie) => (
-            <TrendingMovieCard key={movie.id} movie={movie} />
+            <TrendingMovieCard
+              key={movie.id}
+              movie={movie}
+              handleScroll={handleScroll}
+            />
           ))}
         </div>
       </div>
 
-      <div className="px-8 mt-8">
-        <h2>Trending</h2>
+      <div className="px-4 md:px-8 mt-8">
+        <h2 className="text-lg md:text-2xl font-bold">Trending</h2>
         <div
-          className="grid grid-cols-5 place-items-center my-8 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center my-8 gap-4"
           aria-label="All Movies"
           aria-live="polite"
         >
