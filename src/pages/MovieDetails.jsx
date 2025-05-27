@@ -54,12 +54,7 @@ const MovieDetails = () => {
 
   const {
     backdrop_path,
-    // poster_path,
-    // title,
-    // name,
-    // overview,
-    // vote_average,
-    // release_date,
+  
   } = movie;
 
   return (

@@ -23,6 +23,7 @@ const MovieDetailsCard = ({
     for (let j = 0; j < empty; j++) stars.push("✩");
     return stars.join("");
   };
+  
 
   const [cast, setCast] = useState([]);
   const [hover, setHover] = useState({ index: null, show: false });
@@ -56,12 +57,13 @@ const MovieDetailsCard = ({
             <span className="text-gray-300">Release Date: </span>
             <span className="text-sm">{movie?.release_date}</span>
           </div>
-          <h2 className="text-xl lg:text-2xl font-semibold mt-4 text-white">
-            Overview
+          <h2 className="text-3xl lg:text-4xl font-semibold mt-4 text-white">
+            {/* Overview */}
+            {movie?.title || movie?.name}
           </h2>
           <p className="text-lg leading-relaxed flex-wrap">{movie?.overview}</p>
-          <div className="flex flex-row gap-10">
-            <div >
+          <div className="flex flex-col sm:flex-row sm:gap-10 gap-4 mt-4">
+            <div>
               <h1 className="text-white">Genres:</h1>
               <div className="flex flex-wrap">
                 {movie?.genres.map((genre) => (
@@ -71,19 +73,18 @@ const MovieDetailsCard = ({
                 ))}
               </div>
             </div>
-
-              <div>
-                <h2 className="text-white">Country:</h2>
-                <div className="flex flex-wrap">
-                  {movie?.production_countries.map((country) => (
-                    <span
-                      key={country.iso_3166_1}
-                      className="text-zinc-400 text-sm mr-2"
-                    >
-                      {country.name}
-                    </span>
-                  ))}
-                </div>
+            <div>
+              <h2 className="text-white">Country:</h2>
+              <div className="flex flex-wrap">
+                {movie?.production_countries.map((country) => (
+                  <span
+                    key={country.iso_3166_1}
+                    className="text-zinc-400 text-sm mr-2"
+                  >
+                    {country.name}
+                  </span>
+                ))}
+              </div>
             </div>
             {/* Cast members */}
             <div className="flex flex-wrap gap-1 relative">
@@ -94,7 +95,7 @@ const MovieDetailsCard = ({
                 {cast?.map((actor, index) => (
                   <div key={actor.id} className="inline space-x-6 ">
                     <span
-                      className="cursor-pointer hover:underline inline-flex mr-1 flex-nowrap"
+                      className="cursor-pointer hover:underline text-blue-200 text-sm inline-flex mr-1 flex-nowrap"
                       onMouseEnter={() => setHover({ index, show: true })}
                       onMouseLeave={() =>
                         setHover({ index: null, show: false })
@@ -137,11 +138,12 @@ const MovieDetailsCard = ({
           </div>
 
           <div className="mt-4">
-            <span className="text-yellow-500 mr-2">
-              {getStars(vote_average)}
+            <span className="text-yellow-500 mr-2 text-3xl">
+              {getStars(movie?.vote_average)}
             </span>
             <span className="text-gray-300 ml-1">{vote_average}</span>
           </div>
+
           <div className="flex gap-4 items-center">
             <Link
               to={

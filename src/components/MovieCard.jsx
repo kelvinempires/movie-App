@@ -13,7 +13,7 @@ const MovieCard = ({ movie ,loading}) => {
       to={
         movie?.media_type === "movie" ? `/movie/${movie.id}` : `/tv/${movie.id}`
       }
-      className="flex flex-col gap-4 hover:cursor-pointer bg-slate-100/10 p-5 rounded-lg"
+      className="flex flex-col gap-4 hover:cursor-pointer bg-slate-100/10 p-1 md:p-5 rounded-lg"
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
